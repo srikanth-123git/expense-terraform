@@ -4,7 +4,7 @@ pipelines:
     group: Terraform
     materials:
       git-da613e5:
-        git: https://github.com/raghudevopsb78/expense-terraform.git
+        git: https://github.com/Srikanth-Git123/expense-terraform.git
         shallow_clone: false
         auto_update: true
         branch: main
