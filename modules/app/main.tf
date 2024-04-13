@@ -8,7 +8,7 @@ resource "aws_instance" "instance" {
   }
 }
 
-resource "null_resource" "provisioner" {
+resource "null_resource" "ansible" {
   provisioner "remote-exec" {
 
     connection {
