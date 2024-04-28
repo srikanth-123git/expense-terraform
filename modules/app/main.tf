@@ -22,7 +22,7 @@ resource "null_resource" "ansible" {
 
     inline = [
       "sudo pip3.11 install ansible hvac",
-      "ansible-pull -i localhost, -U https://github.com/Srikanth-Git123/expense-ansible get-secrets.yml -e env=${var.env} -e role_name=${var.component} -e vault_token=${var.vault_token}"
+      "ansible-pull -i localhost, -U https://github.com/Srikanth-Git123/expense-ansible get-secrets.yml -e env=${var.env} -e role_name=${var.component} -e vault_token=${var.vault_token}",
       "ansible-pull -i localhost, -U https://github.com/Srikanth-Git123/expense-ansible expense.yml -e env=${var.env} -e role_name=${var.component} -e @secrets.json @app.json)"
     ]
   }
