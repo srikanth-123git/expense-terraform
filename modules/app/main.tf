@@ -93,6 +93,16 @@ resource "aws_lb_target_group" "main" {
   port                 = var.app_port
   protocol             = "HTTP"
   vpc_id               = var.vpc_id
+  deregistration_delay = 15
+
+  health_check {
+    healthy_threshold   = 2
+    interval            = 5
+    path                = "/health"
+    port                = var.app_port
+    timeout             = 2
+    unhealthy_threshold = 2
+  }
 }
 
 resource "aws_lb_target_group_attachment" "main" {
