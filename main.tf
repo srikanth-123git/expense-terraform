@@ -11,7 +11,7 @@ module "frontend" {
   vpc_id        = module.vpc.vpc_id
   lb_type       = "public"
   lb_needed     = true
-  lb_subnets    = module_vpc.public_subnets
+  lb_subnets    = module.vpc.public_subnets
   app_port      = 80
 }
 
@@ -28,7 +28,7 @@ module "backend" {
   vpc_id        = module.vpc.vpc_id
   lb_type       = "private"
   lb_needed     = true
-  lb_subnets    = module_vpc.backend_subnets
+  lb_subnets    = module.vpc.backend_subnets
   app_port      = 8080
 }
 
