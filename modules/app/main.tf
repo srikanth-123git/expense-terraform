@@ -100,8 +100,8 @@ resource "aws_route53_record" "load-balancer" {
 
 resource "aws_security_group" "load-balancer" {
   count       = var.lb_needed ? 1 : 0
-  name        = "${var.component}-${var.env}-sg"
-  description = "${var.component}-${var.env}-sg"
+  name        = "${var.component}-${var.env}-lbsg"
+  description = "${var.component}-${var.env}-lbsg"
   vpc_id      = var.vpc_id
 
   ingress {
