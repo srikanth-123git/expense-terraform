@@ -22,7 +22,7 @@ module "frontend" {
 }
 
 module "backend" {
-  depends_on = [module.mysql]
+  depends_on = [module.rds]
 
   source                  = "./modules/app"
   instance_type           = var.instance_type
@@ -41,21 +41,6 @@ module "backend" {
   server_app_port_sg_cidr = concat(var.frontend_subnets, var.backend_subnets)
   lb_app_port_sg_cidr     = var.frontend_subnets
   lb_ports                = {http: 8080}
-}
-
-module "mysql" {
-  source                  = "./modules/app"
-  instance_type           = var.instance_type
-  component               = "mysql"
-  env                     = var.env
-  zone_id                 = var.zone_id
-  vault_token             = var.vault_token
-  subnets                 = module.vpc.db_subnets
-  vpc_id                  = module.vpc.vpc_id
-  bastion_nodes           = var.bastion_nodes
-  prometheus_nodes        = var.prometheus_nodes
-  app_port                = 3306
-  server_app_port_sg_cidr = var.backend_subnets
 }
 
 module "rds" {
