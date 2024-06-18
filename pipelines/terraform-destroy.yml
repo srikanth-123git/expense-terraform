@@ -28,7 +28,7 @@ pipelines:
           environment_variables:
             env: prod
           approval:
-            type: manual
+            type: success
           jobs:
             terraform-apply:
               tasks:
