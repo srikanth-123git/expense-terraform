@@ -7,7 +7,7 @@ resource "aws_security_group" "main" {
     from_port   = var.app_port
     to_port     = var.app_port
     protocol    = "TCP"
-    cidr_blocks = concat(var.server_app_port_sg_cidr, var.prometheus_nodes)
+    cidr_blocks = var.server_app_port_sg_cidr
   }
 
   ingress {
@@ -20,6 +20,13 @@ resource "aws_security_group" "main" {
   ingress {
     from_port   = 9100
     to_port     = 9100
+    protocol    = "TCP"
+    cidr_blocks = var.prometheus_nodes
+  }
+
+  ingress {
+    from_port   = 2019
+    to_port     = 2019
     protocol    = "TCP"
     cidr_blocks = var.prometheus_nodes
   }
