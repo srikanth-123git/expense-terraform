@@ -22,7 +22,7 @@ module "frontend" {
 }
 
 module "backend" {
-  #depends_on              = [module.rds]
+  depends_on              = [module.rds]
   source                  = "./modules/app-asg"
   app_port                = 8080
   bastion_nodes           = var.bastion_nodes
