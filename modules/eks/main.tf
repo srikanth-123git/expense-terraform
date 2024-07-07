@@ -6,6 +6,13 @@ resource "aws_eks_cluster" "cluster" {
     subnet_ids = var.subnet_ids
   }
 
+  encryption_config {
+    provider {
+      key_arn = var.kms_key_id
+    }
+    resources = ["secrets"]
+  }
+
 }
 
 resource "aws_eks_node_group" "main" {
