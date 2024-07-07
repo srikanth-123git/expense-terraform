@@ -15,6 +15,22 @@ resource "aws_eks_cluster" "cluster" {
 
 }
 
+resource "aws_launch_template" "main" {
+  name = "eks-${var.env}"
+
+  block_device_mappings {
+    device_name = "/dev/xvda"
+
+    ebs {
+      volume_size           = 100
+      encrypted             = true
+      kms_key_id            = var.kms_key_id
+      delete_on_termination = true
+    }
+  }
+
+}
+
 resource "aws_eks_node_group" "main" {
   cluster_name    = aws_eks_cluster.cluster.name
   node_group_name = "${var.env}-eks-ng"
