@@ -39,6 +39,11 @@ resource "aws_eks_node_group" "main" {
   capacity_type   = "SPOT"
   instance_types  = ["t3.large"]
 
+  launch_template {
+    name    = "eks-${var.env}"
+    version = "$Latest"
+  }
+
   scaling_config {
     desired_size = 1
     max_size     = 2
